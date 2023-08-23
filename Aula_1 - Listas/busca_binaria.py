@@ -1,4 +1,4 @@
-'''
+
 def busca_binaria(vetor, elemento):
     inicio = 0
     fim = len(vetor) - 1
@@ -14,15 +14,10 @@ def busca_binaria(vetor, elemento):
         else:
             fim = meio - 1
     return False, contador
-'''
-
 
 
 
 vetor = (2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40)
-
-fim = len(vetor) - 1
-print(fim)
 
 valor = int(input("Digite o valor que você deseja procurar: "))
 
