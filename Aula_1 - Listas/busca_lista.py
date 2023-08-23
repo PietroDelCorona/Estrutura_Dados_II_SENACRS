@@ -26,12 +26,18 @@ else:
 """
 Exercício 2:
 Crie uma lista que repete o valor pelo tamanho da lista"""
-    
+print("=================")
+import timeit
+
+
 lista = []
 
 def gerar_lista(tamanho, valor):
+    start = timeit.default_timer()
     for i in range(tamanho):
         lista.append(valor)
+    end =timeit.default_timer()
+    print(f"Tempo de iteração da lista é: {float(end - start)}")
     return lista
 
 tamanho = 10
