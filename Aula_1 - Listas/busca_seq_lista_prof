@@ -1,0 +1,43 @@
+# PASSO 1: CRIAR UM METODO QUE CRIA UMA LISTA AUTOMATICAMENTE,
+#ONDE A LISTA DEVE SER PREENCHIDA COM O MESMO VALOR
+#MÉTODO RETORNA LISTA CRIADA
+#EXEMPLO: criarLista(N,V)
+#ONDE: N é o tamanho da lista
+#V: valor a ser preenchido
+#criarLista(1000, 2) //retorna uma lista com mil elementos de valor 2
+import timeit
+
+lista = []
+
+def criarLista(n, v):
+  # Solucao 1: usar um for
+  for i in range (n):
+    lista.append(v)
+  return lista
+
+def buscarSequencial(l, v):
+   #for i in l:
+     #if v == l[i]:
+       #print("Achou\n")
+
+    for i in l:
+      if i == v:
+        print("Achou")
+
+### TESTE
+v = 1
+tam = 10000
+#100
+#200
+#400
+#800
+#1000
+#10000
+lista = criarLista(tam, v)
+print(lista)
+start_time = timeit.default_timer()
+###
+buscarSequencial(lista, 1)
+###
+final_time = timeit.default_timer() - start_time
+print('Tempo: ' + str(final_time) + ' segundos')
