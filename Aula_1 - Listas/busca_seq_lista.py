@@ -19,7 +19,7 @@ def busca_sequencial(l,v):
     
 
 v = 1
-tam = 10
+tam = 10000
 
 lista = criar_lista(tam, v)
 
