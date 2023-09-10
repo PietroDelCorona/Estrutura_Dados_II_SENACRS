@@ -22,40 +22,57 @@ def InserirTarefas():
     lista.addInicio(tarefa)
 
 def DeletarTarefas():
-    pass
+    print("""Você quer remover a tarefa do início ou do fim da lista?
+          Se for no ínicio pressione a tecla i, se no final pressione a tecla f
+          Se quiser retornar ao menu inicial, aperte qualquer tecla.""")
+    tecla_deletar = input("Aperte a tecla que você desejar: ")
+    if tecla_deletar == 'i':
+        lista.removerInicio()
+    elif tecla_deletar == 'f':
+        lista.removerFim()
+    else:
+        return menu()
 
 def AlterarTarefa():
     pass
 
-
+    
 
 def menu():
     while True:
         print("""
-              Olá! Bem-vindo ao menu To-Do List. Essa é uma lista de tarefas.
-              Você só poderá inserir ou remover tarefas no início ou no fim da lista.
-              As opções são:
-              1 - Ler as tarefas atuais
-              2 - Inserir novas tarefas
-              3 - Remover tarefas
-              4 - Alterar tarefas
-              """)
-        try:
-            escolha = int(input("Escolha uma das opções: "))
-            if escolha == 1:
-                ListarTarefas()
-            elif escolha == 2:
-                InserirTarefas()
-            elif escolha == 3:
-                DeletarTarefas()
-            elif escolha == 4:
-                AlterarTarefa()
+            Olá! Bem-vindo ao menu To-Do List. Essa é uma lista de tarefas.
+            Você só poderá inserir ou remover tarefas no início ou no fim da lista.
+            As opções são:
+            1 - Ler as tarefas atuais
+            2 - Inserir novas tarefas
+            3 - Remover tarefas
+            4 - Alterar tarefas
+            5 - Sair do menu
+            """)
+        
+        escolha = int(input("Escolha uma das opções: "))
+        if escolha == 1:
+            ListarTarefas()
+        elif escolha == 2:
+            InserirTarefas()
+        elif escolha == 3:
+            DeletarTarefas()
+        elif escolha == 4:
+            AlterarTarefa()
+        elif escolha == 5:
+            print(f"""\nVocê tem certeza que quer sair desse menu?
+            Se sim, pressione y.""")
+            resposta_saida = input(f"\nAperte a tecla: ")
+            if resposta_saida == 'y':
+                print(f"\nObrigado por utilizar esse menu!")
+                break
             else:
-                print("Opção inválida. Por favor, escolha uma das opções válidas.")
-                return menu()
-        except ValueError:
-            print("Entrada inválida. Por favor, insira um número correspondente ao menu.")
-            continue
+                return menu()                           
+        else:
+            print("Opção inválida. Por favor, escolha uma das opções válidas.")
+            return menu()
+       
                    
 
 menu()

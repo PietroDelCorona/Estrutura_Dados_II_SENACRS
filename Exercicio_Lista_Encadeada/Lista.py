@@ -14,7 +14,7 @@ class Lista():
             item.proximo = self.inicio
             self.inicio = item
         self.tamanho += 1
-        self.imprimir()
+        
     
     def addFim(self, tarefa):
         item = Tarefa(tarefa)
@@ -26,46 +26,38 @@ class Lista():
                 aux = aux.proximo
             aux.proximo = item
         self.tamanho += 1
-        self.imprimir()      
+              
                
     def removerInicio(self):
         if self.inicio is None:
-            raise ValueError("Lista vazia")
+            print("Sua lista de tarefas está vazia")
         elif self.inicio.proximo is None:
-            valor_removido = self.inicio.dado
             self.inicio = None
             self.tamanho -= 1
-            return valor_removido
         else:
-            valor_removido = self.inicio.dado
             self.inicio = self.inicio.proximo
-            self.tamanho -= 1
-            return valor_removido
+        self.tamanho -= 1
+       
             
     def removerFim(self):
         if self.inicio is None:
-            raise ValueError("Lista vazia")
+            print("Sua lista de tarefas está vazia")
         elif self.inicio.proximo is None:
-            valor_removido = self.inicio.dado
             self.inicio = None
             self.tamanho = 0
-            return valor_removido
         else:
             ant = self.inicio
             aux = self.inicio.proximo
             while aux.proximo:
                 ant = aux
                 aux = aux.proximo
-            valor_removido = aux.dado
             ant.proximo = None
             self.tamanho -= 1
-            return valor_removido
-    
-    
+                
     
     def imprimir(self):
         if self.inicio is None:
-            raise ValueError("Lista vazia")
+            print("Sua lista de tarefas está vazia")
         else:
             print("-------------")
             aux = self.inicio
@@ -76,7 +68,7 @@ class Lista():
             
     def __str__(self):
         if self.inicio is None:
-            return "Lista vazia"
+            return "Sua lista de tarefas está vazia"
         result = "-------------\n"
         aux = self.inicio
         while aux:
