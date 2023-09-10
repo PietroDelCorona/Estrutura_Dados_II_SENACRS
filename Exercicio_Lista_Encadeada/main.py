@@ -14,8 +14,9 @@ from Lista import Lista
 lista = Lista()
 
 def ListarTarefas():
-    
-    lista.imprimir()
+    print("---------------")
+    lista.imprimirReverso()
+    print("---------------")
     
 def InserirTarefas():
     tarefa = input("Coloque aqui sua tarefa: ")
@@ -27,13 +28,13 @@ def DeletarTarefas():
           Se quiser retornar ao menu inicial, aperte qualquer tecla.""")
     tecla_deletar = input("Aperte a tecla que você desejar: ")
     if tecla_deletar == 'i':
-        lista.removerInicio()
-    elif tecla_deletar == 'f':
         lista.removerFim()
+    elif tecla_deletar == 'f':
+        lista.removerInicio()
     else:
         return menu()
 
-def AlterarTarefa():
+def AlterarTarefas():
     pass
 
     
@@ -51,27 +52,32 @@ def menu():
             5 - Sair do menu
             """)
         
-        escolha = int(input("Escolha uma das opções: "))
-        if escolha == 1:
-            ListarTarefas()
-        elif escolha == 2:
-            InserirTarefas()
-        elif escolha == 3:
-            DeletarTarefas()
-        elif escolha == 4:
-            AlterarTarefa()
-        elif escolha == 5:
-            print(f"""\nVocê tem certeza que quer sair desse menu?
-            Se sim, pressione y.""")
-            resposta_saida = input(f"\nAperte a tecla: ")
-            if resposta_saida == 'y':
-                print(f"\nObrigado por utilizar esse menu!")
-                break
+        try:
+            escolha = int(input("Escolha uma das opções: "))
+            if escolha == 1:
+                ListarTarefas()
+            elif escolha == 2:
+                InserirTarefas()
+            elif escolha == 3:
+                DeletarTarefas()
+            elif escolha == 4:
+                AlterarTarefas()
+            elif escolha == 5:
+                print(f"""\nVocê tem certeza que quer sair desse menu?
+                Se sim, pressione y.""")
+                resposta_saida = input(f"\nAperte a tecla: ")
+                if resposta_saida == 'y':
+                    print(f"\nObrigado por utilizar esse menu!")
+                    break
+                else:
+                    continue                           
             else:
-                return menu()                           
-        else:
-            print("Opção inválida. Por favor, escolha uma das opções válidas.")
-            return menu()
+                print("Opção inválida. Por favor, insira um número correspondente ao menu.")
+                continue
+        except ValueError:
+            print("Entrada inválida. Por favor, insira um número correspondente ao menu.")
+            continue
+            
        
                    
 
