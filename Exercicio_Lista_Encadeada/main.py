@@ -34,10 +34,18 @@ def DeletarTarefas():
     else:
         return menu()
 
-def AlterarTarefas():
+def MarcarTarefaIndice():
     pass
 
-    
+def RemoverTarefaIndice():
+    pass
+
+def InserirTarefaIndice():
+    pass
+
+def AlterarTarefas():
+    pass 
+        
 
 def menu():
     while True:
@@ -78,7 +86,7 @@ def menu():
             print("Entrada inválida. Por favor, insira um número correspondente ao menu.")
             continue
             
-       
+                 
                    
 
 menu()
