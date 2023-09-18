@@ -34,17 +34,61 @@ def deletar_tarefas():
     else:
         return menu()
 
-def marcar_tarefa_indice():
-    pass
+def marcar_tarefa_concluida(lista):
+    print("Tarefas pendentes:")
+    print("------------------")
+    aux = lista.inicio
+    while aux:
+        if not aux.concluida:
+            print(f"[{aux.identificacao}] {'[X]' if aux.concluida else '[ ]'} {aux.descricao}")
+        aux.proximo
+    print("-------------------")
+    
+    indice = int(input("Digite o índice que da tarefa que deseja marcar como concluída: "))
+    
+    aux = lista.inicio
+    while aux:
+        if aux.identificacao == indice:
+            aux.concluida = True
+            print(f"Tarefa {aux.identificacao} marcada como concluída.")
+            break
+        aux = aux.proximo
+    else:
+        print("Tarefa não encontrada.")
 
 def remover_tarefa_indice():
-    pass
+    indice = int(input("Digite o índice da tarefa que deseja remover: "))
+
 
 def inserir_tarefa_indice():
-    pass
+    tarefa = input("Digite aqui a nova tarefa: ")
+    indice = int(input("Digite o índice onde deseja inserir a nova tarefa: "))
+
 
 def alterar_tarefas():
-    pass 
+    print("Tarefas atuais:")
+    print("------------------")
+    aux = lista.inicio
+    while aux:
+        print(f"{aux.identificacao}, {aux.descricao}")
+        aux = aux.proximo
+    print("----------------")
+    
+    indice = int(input("Digite o índice da tarefa que deseja alterar: "))
+    
+    aux = lista.inicio
+    while aux:
+        if aux.identificacao == indice:
+            nova_descricao = input("Digite a nova descrição da tarefa: ")
+            aux.descricao = nova_descricao
+            print(f"Tarefa {aux.descricao} alterada para: {nova_descricao}")
+            break
+        aux = aux.proximo
+    else:
+        print("Tarefa não encontrada.")
+            
+    
+
         
 
 def menu():
@@ -57,7 +101,8 @@ def menu():
             2 - Inserir novas tarefas
             3 - Remover tarefas
             4 - Alterar tarefas
-            5 - Sair do menu
+            5 - Marcar tarefas como concluídas
+            6 - Sair do menu
             """)
         
         try:
@@ -71,6 +116,8 @@ def menu():
             elif escolha == 4:
                 alterar_tarefas()
             elif escolha == 5:
+                marcar_tarefa_concluida(lista)
+            elif escolha == 6:
                 print(f"""\nVocê tem certeza que quer sair desse menu?
                 Se sim, pressione y.""")
                 resposta_saida = input(f"\nAperte a tecla: ")
