@@ -7,7 +7,7 @@ class Lista():
         self.fim = None
         self.tamanho = 0
         
-    def addInicio(self, tarefa):
+    def add_inicio(self, tarefa):
         item = Tarefa(tarefa)
         if self.inicio == None:
             self.inicio = item
@@ -19,7 +19,7 @@ class Lista():
         self.tamanho += 1
         
     
-    def addFim(self, tarefa):
+    def add_fim(self, tarefa):
         item = Tarefa(tarefa)
         if self.inicio == None:
             self.inicio = item
@@ -31,7 +31,7 @@ class Lista():
         self.tamanho += 1
               
                
-    def removerInicio(self):
+    def remover_inicio(self):
         if self.inicio is None:
             print("Sua lista de tarefas está vazia")
         elif self.inicio.proximo is None:
@@ -44,7 +44,7 @@ class Lista():
         self.tamanho -= 1
        
             
-    def removerFim(self):
+    def remover_fim(self):
         if self.inicio is None:
             print("Sua lista de tarefas está vazia")
         elif self.inicio.proximo is None:
@@ -68,7 +68,7 @@ class Lista():
                 aux = aux.proximo
             print(" Total de tarefas: ", str(self.tamanho))
     
-    def imprimirReverso(self):
+    def imprimir_reverso(self):
         if self.inicio is None:
             print("Sua lista de tarefas está vazia")
         else:

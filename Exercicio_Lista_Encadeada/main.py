@@ -13,37 +13,37 @@ from Lista import Lista
 
 lista = Lista()
 
-def ListarTarefas():
+def listar_tarefas():
     print("---------------")
-    lista.imprimirReverso()
+    lista.imprimir_reverso()
     print("---------------")
     
-def InserirTarefas():
+def inserir_tarefas():
     tarefa = input("Coloque aqui sua tarefa: ")
-    lista.addInicio(tarefa)
+    lista.add_inicio(tarefa)
 
-def DeletarTarefas():
+def deletar_tarefas():
     print("""Você quer remover a tarefa do início ou do fim da lista?
           Se for no ínicio pressione a tecla i, se no final pressione a tecla f
           Se quiser retornar ao menu inicial, aperte qualquer tecla.""")
     tecla_deletar = input("Aperte a tecla que você desejar: ")
     if tecla_deletar == 'i':
-        lista.removerFim()
+        lista.remover_fim()
     elif tecla_deletar == 'f':
-        lista.removerInicio()
+        lista.remover_inicio()
     else:
         return menu()
 
-def MarcarTarefaIndice():
+def marcar_tarefa_indice():
     pass
 
-def RemoverTarefaIndice():
+def remover_tarefa_indice():
     pass
 
-def InserirTarefaIndice():
+def inserir_tarefa_indice():
     pass
 
-def AlterarTarefas():
+def alterar_tarefas():
     pass 
         
 
@@ -63,13 +63,13 @@ def menu():
         try:
             escolha = int(input("Escolha uma das opções: "))
             if escolha == 1:
-                ListarTarefas()
+                listar_tarefas()
             elif escolha == 2:
-                InserirTarefas()
+                inserir_tarefas()
             elif escolha == 3:
-                DeletarTarefas()
+                deletar_tarefas()
             elif escolha == 4:
-                AlterarTarefas()
+                alterar_tarefas()
             elif escolha == 5:
                 print(f"""\nVocê tem certeza que quer sair desse menu?
                 Se sim, pressione y.""")
@@ -86,7 +86,5 @@ def menu():
             print("Entrada inválida. Por favor, insira um número correspondente ao menu.")
             continue
             
-                 
-                   
-
+                                
 menu()
