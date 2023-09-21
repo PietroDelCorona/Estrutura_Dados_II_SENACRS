@@ -1,14 +1,4 @@
-'''
-To Do List : 
-Desenvolva uma To Do List (Lista de Tarefas) em Python utilizando, obrigatoriamente, listas encadeadas (livre escolha de qual delas será a mais adequada). 
-Como será essa aplicação? 
-- Deve contemplar todas principais atividades de um CRUD simples, isto é: Inserir, Deleter, Remover e Alterar - uma tarefa ou várias. 
-- Implementar um pequeno menu dando a opção de escolha ao usuário e, consequentemente, viabilizando maior interação com a aplicação. 
-- Além das operações básicas também podem implementar outras funcionalidades, como por exemplo, marcar uma tarefa como feita e manter ela destacada na listagem (ou não). 
-Dicas: 
-- Procure modularizar a sua aplicação o máximo que conseguir, mantendo coesão e coerência do início ao fim. Não esquecendo dos quatro pilares da Programação Orientada a Objetos
-- Use a criatividade, destaquei pontos essenciais apenas. 
-'''
+
 from Lista import Lista
 from Tarefa import Tarefa
 
@@ -19,7 +9,7 @@ def validar_indice_input(mensagem):
     while True:
         try:
             indice = int(input(mensagem))
-            if indice < 0 or indice >= lista.tamanho():
+            if indice < 0 or indice > lista.tamanho:
                 print("Índice inválido. Tente novamente.")
                 continue
             return indice
@@ -55,21 +45,23 @@ def marcar_tarefa_concluida(lista):
     aux = lista.inicio
     while aux:
         if not aux.concluida:
-            print(f"[{aux.identificacao}] {'[X]' if aux.concluida else '[ ]'} {aux.descricao}")
-        aux.proximo
+            print(f"{aux.identificacao} {'[X]' if aux.concluida else '[ ]'} {aux.descricao}")
+        aux = aux.proximo
     print("-------------------")
     
-    indice = validar_indice_input("Digite o índice que da tarefa que deseja marcar como concluída: ")
+    indice = validar_indice_input("Digite o índice da tarefa que deseja marcar como concluída: ")
     
     aux = lista.inicio
     while aux:
         if aux.identificacao == indice:
-            aux.concluida = True
-            print(f"Tarefa {aux.identificacao} marcada como concluída.")
+            if aux.concluida:
+                print(f"Tarefa {aux.identificacao} já está marcada como concluída.")
+            else:
+                aux.concluida = True
+                print(f"Tarefa {aux.identificacao} marcada como concluída.")
             break
         aux = aux.proximo
-    else:
-        print("Tarefa não encontrada.")
+    
 
 def remover_tarefa_indice():
     print("Tarefas atuais:")
@@ -92,42 +84,14 @@ def remover_tarefa_indice():
             else:
                 lista.inicio = aux.proximo
             print(f"Tarefa: {aux.identificacao} removida")
+            lista.tamanho -= 1
+            listar_tarefas()
             break
         prev = aux
         aux = aux.proximo
     else:
         print("Tarefa não encontrada.")
-
-
-def inserir_tarefa_indice():
-    print("Tarefas atuais:")
-    print("---------------")
-    aux = lista.inicio
-    while aux:
-        print(f"{aux.identificacao}, {aux.descricao}")
-        aux = aux.proximo
-    print("----------------")
     
-    indice = validar_indice_input("Digite o índice onde deseja inserir a nova tarefa: ")
-    
-    nova_descricao = input("Digite a nova descrição da nova tarefa: ")
-    
-    nova_tarefa = Tarefa(nova_descricao)
-    
-    aux = lista.inicio
-    prev = None
-    
-    for _ in range(indice):
-        prev = aux
-        aux = aux.proximo
-    
-    if prev:
-        prev.proximo = nova_tarefa
-    else:
-        lista.inicio = nova_tarefa
-    
-    nova_tarefa.proximo = aux    
-    print(f"Tarefa inserida com sucesso no índice {indice}.")
 
 
 def alterar_tarefa_indice():
@@ -165,9 +129,8 @@ def menu():
             3 - Remover tarefas
             4 - Alterar tarefas pelo índice
             5 - Marcar tarefas como concluídas
-            6 - Inserir tarefas através dos índices
-            7 - Deletar tarefas através dos índices
-            8 - Sair do menu
+            6 - Deletar tarefas através dos índices
+            7 - Sair do menu
             """)
         
         try:
@@ -183,10 +146,8 @@ def menu():
             elif escolha == 5:
                 marcar_tarefa_concluida(lista)
             elif escolha == 6:
-                inserir_tarefa_indice()
-            elif escolha == 7:
                 remover_tarefa_indice()
-            elif escolha == 8:
+            elif escolha == 7:
                 print(f"""\nVocê tem certeza que quer sair desse menu?
                 Se sim, pressione y.""")
                 resposta_saida = input(f"\nAperte a tecla: ")

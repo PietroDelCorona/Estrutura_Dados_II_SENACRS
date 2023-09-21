@@ -68,9 +68,11 @@ class Lista():
         else:
             print("-------------")
             aux = self.inicio
+            total_tarefas = 0
             while( aux ):
-                print( aux.descricao)
+                print(f"{aux.descricao}")
                 aux = aux.proximo
+                total_tarefas += 1
             print(" Total de tarefas: ", str(self.tamanho))
     
     def imprimir_reverso(self):
@@ -79,10 +81,12 @@ class Lista():
         else:
             print("---------------")
             aux = self.fim
+            total_tarefas = 0
             while(aux):
-                print(aux.descricao)
+                print(f"{aux.descricao}")
                 aux = aux.anterior
-            print("Total de elementos: ", str(self.tamanho))          
+                total_tarefas -= 1
+            print("Total de tarefas: ", str(self.tamanho))          
                       
     def __str__(self):
         # Retorna uma representação em string da lista de tarefas.
