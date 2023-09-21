@@ -34,8 +34,8 @@ def listar_tarefas():
     print("---------------")
     
 def inserir_tarefas():
-    tarefa = input("Coloque aqui sua tarefa: ")
-    lista.add_inicio(tarefa)
+    descricao = input("Coloque aqui sua tarefa: ")
+    lista.adicionar_inicio(descricao)
 
 def deletar_tarefas():
     print("""Você quer remover a tarefa do início ou do fim da lista?
@@ -88,9 +88,9 @@ def remover_tarefa_indice():
     while aux:
         if aux.identificacao == indice:
             if prev:
-                prev.proximo == aux.proximo
+                prev.proximo = aux.proximo
             else:
-                lista.inicio == aux.proximo
+                lista.inicio = aux.proximo
             print(f"Tarefa: {aux.identificacao} removida")
             break
         prev = aux
@@ -163,9 +163,11 @@ def menu():
             1 - Ler as tarefas atuais
             2 - Inserir novas tarefas
             3 - Remover tarefas
-            4 - Alterar tarefas
+            4 - Alterar tarefas pelo índice
             5 - Marcar tarefas como concluídas
-            6 - Sair do menu
+            6 - Inserir tarefas através dos índices
+            7 - Deletar tarefas através dos índices
+            8 - Sair do menu
             """)
         
         try:
@@ -181,6 +183,10 @@ def menu():
             elif escolha == 5:
                 marcar_tarefa_concluida(lista)
             elif escolha == 6:
+                inserir_tarefa_indice()
+            elif escolha == 7:
+                remover_tarefa_indice()
+            elif escolha == 8:
                 print(f"""\nVocê tem certeza que quer sair desse menu?
                 Se sim, pressione y.""")
                 resposta_saida = input(f"\nAperte a tecla: ")

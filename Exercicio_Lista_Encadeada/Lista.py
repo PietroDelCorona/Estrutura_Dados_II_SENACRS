@@ -7,9 +7,10 @@ class Lista():
         self.fim = None
         self.tamanho = 0
         
-    def adicionar_inicio(self, tarefa):
+    def adicionar_inicio(self, descricao):
         # Adiciona uma tarefa ao início da lista.
-        item = Tarefa(tarefa)
+        novo_indice = self.tamanho + 1
+        item = Tarefa( descricao, novo_indice)
         if self.inicio == None:
             self.inicio = item
             self.fim = item
@@ -20,9 +21,10 @@ class Lista():
         self.tamanho += 1
         
     
-    def adicionar_fim(self, tarefa):
+    def adicionar_fim(self, descricao):
         # Adiciona uma tarefa ao final da lista.
-        item = Tarefa(tarefa)
+        novo_indice = self.tamanho + 1
+        item = Tarefa(descricao, novo_indice)
         if self.inicio == None:
             self.inicio = item
             self.fim = item
@@ -67,7 +69,7 @@ class Lista():
             print("-------------")
             aux = self.inicio
             while( aux ):
-                print( aux.dado)
+                print( aux.descricao)
                 aux = aux.proximo
             print(" Total de tarefas: ", str(self.tamanho))
     
@@ -78,7 +80,7 @@ class Lista():
             print("---------------")
             aux = self.fim
             while(aux):
-                print(aux.dado)
+                print(aux.descricao)
                 aux = aux.anterior
             print("Total de elementos: ", str(self.tamanho))          
                       
