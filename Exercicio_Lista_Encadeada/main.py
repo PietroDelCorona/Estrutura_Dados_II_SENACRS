@@ -10,8 +10,23 @@ Dicas:
 - Use a criatividade, destaquei pontos essenciais apenas. 
 '''
 from Lista import Lista
+from Tarefa import Tarefa
 
 lista = Lista()
+
+
+def validar_indice_input(mensagem):
+    while True:
+        try:
+            indice = int(input(mensagem))
+            if indice < 0 or indice >= lista.tamanho():
+                print("Índice inválido. Tente novamente.")
+                continue
+            return indice
+        except ValueError:
+            print("Entrada inválida. Insira um número válido")
+
+
 
 def listar_tarefas():
     print("---------------")
@@ -32,7 +47,7 @@ def deletar_tarefas():
     elif tecla_deletar == 'f':
         lista.remover_inicio()
     else:
-        return menu()
+        menu()
 
 def marcar_tarefa_concluida(lista):
     print("Tarefas pendentes:")
@@ -44,7 +59,7 @@ def marcar_tarefa_concluida(lista):
         aux.proximo
     print("-------------------")
     
-    indice = int(input("Digite o índice que da tarefa que deseja marcar como concluída: "))
+    indice = validar_indice_input("Digite o índice que da tarefa que deseja marcar como concluída: ")
     
     aux = lista.inicio
     while aux:
@@ -57,15 +72,65 @@ def marcar_tarefa_concluida(lista):
         print("Tarefa não encontrada.")
 
 def remover_tarefa_indice():
-    indice = int(input("Digite o índice da tarefa que deseja remover: "))
+    print("Tarefas atuais:")
+    print("---------------")
+    aux = lista.inicio
+    while aux:
+        print(f"{aux.identificacao}, {aux.descricao}")
+        aux = aux.proximo
+    print("----------------")  
+    
+    indice = validar_indice_input("Digite o índice da tarefa que deseja remover: ")
+    
+    aux = lista.inicio
+    prev = None
+    
+    while aux:
+        if aux.identificacao == indice:
+            if prev:
+                prev.proximo == aux.proximo
+            else:
+                lista.inicio == aux.proximo
+            print(f"Tarefa: {aux.identificacao} removida")
+            break
+        prev = aux
+        aux = aux.proximo
+    else:
+        print("Tarefa não encontrada.")
 
 
 def inserir_tarefa_indice():
-    tarefa = input("Digite aqui a nova tarefa: ")
-    indice = int(input("Digite o índice onde deseja inserir a nova tarefa: "))
+    print("Tarefas atuais:")
+    print("---------------")
+    aux = lista.inicio
+    while aux:
+        print(f"{aux.identificacao}, {aux.descricao}")
+        aux = aux.proximo
+    print("----------------")
+    
+    indice = validar_indice_input("Digite o índice onde deseja inserir a nova tarefa: ")
+    
+    nova_descricao = input("Digite a nova descrição da nova tarefa: ")
+    
+    nova_tarefa = Tarefa(nova_descricao)
+    
+    aux = lista.inicio
+    prev = None
+    
+    for _ in range(indice):
+        prev = aux
+        aux = aux.proximo
+    
+    if prev:
+        prev.proximo = nova_tarefa
+    else:
+        lista.inicio = nova_tarefa
+    
+    nova_tarefa.proximo = aux    
+    print(f"Tarefa inserida com sucesso no índice {indice}.")
 
 
-def alterar_tarefas():
+def alterar_tarefa_indice():
     print("Tarefas atuais:")
     print("------------------")
     aux = lista.inicio
@@ -74,7 +139,7 @@ def alterar_tarefas():
         aux = aux.proximo
     print("----------------")
     
-    indice = int(input("Digite o índice da tarefa que deseja alterar: "))
+    indice = validar_indice_input("Digite o índice da tarefa que deseja alterar: ")
     
     aux = lista.inicio
     while aux:
@@ -87,8 +152,6 @@ def alterar_tarefas():
     else:
         print("Tarefa não encontrada.")
             
-    
-
         
 
 def menu():
@@ -114,7 +177,7 @@ def menu():
             elif escolha == 3:
                 deletar_tarefas()
             elif escolha == 4:
-                alterar_tarefas()
+                alterar_tarefa_indice()
             elif escolha == 5:
                 marcar_tarefa_concluida(lista)
             elif escolha == 6:
