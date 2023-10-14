@@ -2,7 +2,7 @@
 
 import random
 
-def quickSort(A, low, high): # expected O(N log N) worst case for ALL cases, the heavy time complexity analysis involving expected values are omitted
+def quicksort(A, low, high): # expected O(N log N) worst case for ALL cases, the heavy time complexity analysis involving expected values are omitted
     if low < high:
         r = low + random.randrange(high-low+1) # a random index between [low..high]
         A[low], A[r] = A[r], A[low] # tada
@@ -18,8 +18,21 @@ def quickSort(A, low, high): # expected O(N log N) worst case for ALL cases, the
         A[low], A[m] = A[m], A[low] # final step, swap pivot with A[m]
 
         # a[low..high] ~> a[low..m-1], pivot, a[m+1..high]
-        quickSort(A, low, m-1) # recursively sort left sublist
+        quicksort(A, low, m-1) # recursively sort left sublist
         # A[m] = pivot is already sorted after partition
-        quickSort(A, m+1, high) # recursively sort right sublist
+        quicksort(A, m+1, high) # recursively sort right sublist
+        
+        print("A:", A)
 
     return A
+
+# Crie um array de inteiros
+A = [57, 385, 24, 42, 3, 68, 94, 1, 12, 47, 33, 5]
+print("Array pré-quicksorting:", A)
+print("-----------------------------------------")
+# Ordene o array usando a função quicksort()
+quicksort(A, 0, len(A) - 1)
+
+# Imprima o array ordenado
+print("-----------------------------------------")
+print("Array organizado pelo quicksorting:", A)
