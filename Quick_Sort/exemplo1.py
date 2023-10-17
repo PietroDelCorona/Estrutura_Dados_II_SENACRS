@@ -1,12 +1,16 @@
 #FreeCodeCamp
 
 import random
+import time
 
 z=[random.randint(0,100) for i in range(0,20)]
-print("---------------------------------------")
-print("Array pré-ordenação:", z)
+#z=[random.randint(0,500000) for i in range(0,500000)]
+#print("---------------------------------------")
+#print("Array pré-ordenação:", z)
+
 def quicksort(z):
-    if(len(z)>1):        
+    if(len(z)>1):
+        print("Array antes do algoritmo:", z)        
         piv=int(len(z)/2)
         val=z[piv]
         print("----------")
@@ -27,5 +31,9 @@ def quicksort(z):
         return res
     else:
         return z
-        
-ans1=quicksort(z)
+
+#inicio = time.time()        
+quicksort(z)
+#fim = time.time()
+#tempo_execucao = fim - inicio
+#print(f"Tempo de execução: {tempo_execucao} segundos")
