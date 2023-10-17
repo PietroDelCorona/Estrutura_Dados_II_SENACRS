@@ -2,7 +2,7 @@ import random
 import time
 
 #A = [64, 25, 12, 22, 11]
-A = [random.randint(0,50000) for i in range(0,50000)]
+A = [random.randint(0,500000) for i in range(0,500000)]
  
 inicio = time.time()
 # Traverse through all array elements
