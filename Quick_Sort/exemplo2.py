@@ -1,6 +1,7 @@
 # Visualgo
 
 import random
+import time
 
 def quicksort(A, low, high): # expected O(N log N) worst case for ALL cases, the heavy time complexity analysis involving expected values are omitted
     if low < high:
@@ -29,10 +30,15 @@ def quicksort(A, low, high): # expected O(N log N) worst case for ALL cases, the
 # Crie um array de inteiros
 A = [57, 385, 24, 42, 3, 68, 94, 1, 12, 47, 33, 5]
 print("Array pré-quicksorting:", A)
-print("-----------------------------------------")
+print("-----------------------")
+#A = [random.randint(0,500000) for i in range(0,500000)]
 # Ordene o array usando a função quicksort()
+#inicio = time.time()
 quicksort(A, 0, len(A) - 1)
+#fim = time.time()
+#tempo_execucao = fim - inicio
+#print(f"Tempo de execução: {tempo_execucao} segundos")
 
 # Imprima o array ordenado
 print("-----------------------------------------")
-print("Array organizado pelo quicksorting:", A)
+print("Array organizado pelo quicksorting", A)
