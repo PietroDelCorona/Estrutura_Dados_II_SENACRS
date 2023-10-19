@@ -3,9 +3,9 @@
 import random
 import time
 
-z=[random.randint(0,100) for i in range(0,20)]
 #z=[random.randint(0,500000) for i in range(0,500000)]
-#print("---------------------------------------")
+z=[random.randint(0,100) for i in range(0,20)]
+print("---------------------------------------")
 #print("Array pré-ordenação:", z)
 
 def quicksort(z):
@@ -32,8 +32,8 @@ def quicksort(z):
     else:
         return z
 
-#inicio = time.time()        
+inicio = time.time()        
 quicksort(z)
-#fim = time.time()
-#tempo_execucao = fim - inicio
-#print(f"Tempo de execução: {tempo_execucao} segundos")
+fim = time.time()
+tempo_execucao = fim - inicio
+print(f"Tempo de execução: {tempo_execucao} segundos")
