@@ -49,3 +49,24 @@ if node_to_find is not None:
     print(f"É interno? {t.is_internal(node_to_find)}")
     print(f"É externo? {t.is_external(node_to_find)}")
     print(f"É raiz? {t.is_root(node_to_find)}")
+
+
+print(f"Tamanho da árvore: {len(t)}")
+print(f"A árvore está vazia? {t.is_empty()}")
+
+print(f"Elementos na árvore:")
+for element in t.iterator():
+    print(element)
+
+print("Nodos na Árvore:")
+for position in t.positions():
+    print(position)
+
+old_data = input("Digite o nodo que você quer substituir: ")
+
+new_data = input("Digite o novo valor do nodo: ")
+
+t.replace_element(old_data, new_data)
+print(f"Substituindo o antigo valor pelo novo.\n Antigo valor: {old_data}.\n Novo valor: {new_data}")
+print("Árvore após a substituição:")
+print(t)
