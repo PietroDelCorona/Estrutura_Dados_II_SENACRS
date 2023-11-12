@@ -1,16 +1,6 @@
 from Node import Node
 from Tree import Tree
 
-def search_node(node, name_to_find):
-    if node.data == name_to_find:
-        return node
-    
-    for child in node.children:
-        found_node = search_node(child, name_to_find)
-        if found_node:
-            return found_node
-
-    return None
 
 t = Tree("A")
 
@@ -31,6 +21,17 @@ t.get_root().add_child(b)
 
 print("Árvore:")
 print(t)
+
+def search_node(node, name_to_find):
+    if node.data == name_to_find:
+        return node
+    
+    for child in node.children:
+        found_node = search_node(child, name_to_find)
+        if found_node:
+            return found_node
+
+    return None
 
 while True:
     node_name_to_find = input("Qual nodo você quer buscar? ")
