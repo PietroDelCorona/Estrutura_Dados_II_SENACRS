@@ -28,3 +28,5 @@ class Node:
         else:
             print("Não há filho à direita para remover.")
             return None
+    
+    
