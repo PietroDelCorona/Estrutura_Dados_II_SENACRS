@@ -136,6 +136,40 @@ class BinaryTree():
 
         return None
     
+    def remove_node_with_message(self, value):
+        node_to_remove = self.search_node(value)
+
+        if node_to_remove is None:
+            print(f"Nodo '{value}' não encontrado para remoção.")
+            return
+
+        parent_node = self.find_parent(self.get_root(), node_to_remove)
+
+        if self.is_root(node_to_remove):
+            removed_node = self.get_root().data
+            self.root = None
+            print(f"Removendo nodo '{removed_node}' que era a raiz.")
+            return
+
+        if self.is_internal(node_to_remove):
+            node_type = "interno"
+        elif self.is_external(node_to_remove):
+            node_type = "externo"
+
+        removed_node = node_to_remove.data
+
+        if parent_node.left == node_to_remove:
+            removed = parent_node.left.remove_left_child()  # Utiliza o método remove_left_child da classe Node
+        else:
+            removed = parent_node.right.remove_right_child()  # Utiliza o método remove_right_child da classe Node
+
+        if removed:
+            print(f"Removendo nodo '{removed.data}' que era {node_type}.")
+        else:
+            print(f"Nodo '{value}' não tinha filho para remoção.")
+            
+    
+    
    
     
     

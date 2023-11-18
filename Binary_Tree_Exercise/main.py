@@ -78,3 +78,9 @@ if node_to_replace is not None:
 
 else:
     print(f"Nodo '{old_data}' não encontrado. Tente novamente.")
+    
+
+remove_value = input("Qual nodo você quer remover? ")
+t.remove_node_with_message(remove_value)  # Aqui 't' representa a sua árvore
+print("Nova Árvore:")
+print(t)
