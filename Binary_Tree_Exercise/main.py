@@ -80,7 +80,15 @@ else:
     print(f"Nodo '{old_data}' não encontrado. Tente novamente.")
     
 
-remove_value = input("Qual nodo você quer remover? ")
-t.remove_node_with_message(remove_value)  # Aqui 't' representa a sua árvore
-print("Nova Árvore:")
-print(t)
+remove = input("Você quer remover algum nodo? ")
+
+if remove == "y":
+    remove_value = input("Qual nodo você quer remover? ")
+    t.remove_node_message(remove_value)  
+    print("Nova Árvore:")
+    print(t)
+else:
+    print("Árvore existente:")
+    print(t)
+    
+    
