@@ -1,8 +1,8 @@
 
 from Node import Node
-from BinaryTree import BinaryTree
+from BinarySearchTree import BinarySearchTree
 
-t = BinaryTree("A")
+t = BinarySearchTree("A")
 
 b = Node("B")
 c = Node("C")

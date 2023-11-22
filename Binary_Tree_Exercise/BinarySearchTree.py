@@ -1,7 +1,7 @@
 
 from Node import Node
 
-class BinaryTree():
+class BinarySearchTree():
     def __init__(self, root_data):
         self.root = Node(root_data)
     
@@ -116,9 +116,6 @@ class BinaryTree():
 
     def is_root(self, node):
         return node == self.root
-    
-    def search_node(self, name_to_find):
-        return self._search_node(name_to_find, self.root)
 
     def search_node(self, value, start=None):
         if start is None:
