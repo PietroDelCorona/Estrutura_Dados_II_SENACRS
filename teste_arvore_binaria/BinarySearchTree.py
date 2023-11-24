@@ -1,4 +1,3 @@
-
 from Node import Node
 
 class BinarySearchTree():
@@ -7,6 +6,9 @@ class BinarySearchTree():
     
     def get_root(self):
         return self.root
+    
+    def set_root(self, root_data):
+        self.root = Node(root_data)
     
     def __len__(self):
         return self.size()
@@ -35,16 +37,16 @@ class BinarySearchTree():
     
     def positions(self):
         return self.iterator_helper(self.root)
-    
+    """
     def replace_element(self, v, e):
-        node_to_replace = self.search_node(v, self.root)
+        node_to_replace, _ = self.search_node(v)
         if node_to_replace:
             old_data = node_to_replace.data
             node_to_replace.data = e
             return old_data, e
         else:
             return None
-
+    """
     def __str__(self):
         return self.str_helper(self.root,)
     
@@ -64,6 +66,58 @@ class BinarySearchTree():
             result += self.str_helper(node.left)
             result += self.str_helper(node.right)
         return result
+    
+    def add_left_child(self, parent_node_data, new_node_data):
+        parent_node, parent, found = self.search_node(parent_node_data)
+        if not found:
+            print(f'Nodo {parent_node_data} não encontrado para adicionar um filho à esquerda.')
+            return False
+        
+        if parent_node.left is None:
+            parent_node.left = Node(new_node_data)
+            return True
+        else:
+            print(f'Já existe um nodo à esquerda do valor {parent_node_data}.')
+            return False
+    
+    def add_right_child(self, parent_node_data, new_node_data):
+        parent_node, parent, found = self.search_node(parent_node_data)
+        if not found:
+            print(f'Nodo {parent_node_data} não encontrado para adicionar um filho à direita.')
+            return False
+        
+        if parent_node.right is None:
+            parent_node.right = Node(new_node_data)
+            return True
+        else:
+            print(f'Já existe um nodo à direita do valor {parent_node_data}.')
+            return False
+        
+    def add_left_child(self, parent_node_data, new_node_data):
+        parent_node, parent, found = self.search_node(parent_node_data)
+        if not found:
+            print(f'Nodo {parent_node_data} não encontrado para adicionar um filho à esquerda.')
+            return False
+        
+        if parent_node.left is None:
+            parent_node.left = Node(new_node_data)
+            return True
+        else:
+            print(f'Já existe um nodo à esquerda do valor {parent_node_data}.')
+            return False
+            
+    def remove_right_child(self, parent_value):
+            parent_node = self.search_node(parent_value)
+            if parent_node:
+                if parent_node.right:
+                    parent_node.right = None
+                    return True
+                else:
+                    print("Não há filho à direita para remover.")
+                    return False
+            else:
+                print(f'Nodo {parent_value} não encontrado.')
+                return False
     
     def print_tree(self, traversal_type):
         if traversal_type == "preorder":
@@ -96,17 +150,22 @@ class BinarySearchTree():
             traversal += (str(start.data) + " ")
         return traversal
     
-    def find_parent(self, start, node_to_find, parent=None):
-        if start is None:
+    def find_parent(self, start, node_to_find):
+        if start is None or start == node_to_find:
             return None
 
-        if start.data == node_to_find.data:
-            return parent
+        if (start.left == node_to_find) or (start.right == node_to_find):
+            return start
 
-        left_parent = self.find_parent(start.left, node_to_find, start)
-        right_parent = self.find_parent(start.right, node_to_find, start)
+        left_parent = self.find_parent(start.left, node_to_find)
+        if left_parent:
+            return left_parent
 
-        return left_parent or right_parent
+        right_parent = self.find_parent(start.right, node_to_find)
+        if right_parent:
+            return right_parent
+
+        return None
     
     def is_internal(self, node):
         return node.left is not None or node.right is not None
@@ -121,18 +180,22 @@ class BinarySearchTree():
         if start is None:
             start = self.root
 
-        stack = [start]
-        while stack:
-            current = stack.pop()
-            if current.data == value:
-                return current
-            if current.right:
-                stack.append(current.right)
-            if current.left:
-                stack.append(current.left)
+        parent = None
+        current = start
 
-        return None
-    
+        while current:
+            if int(value) == current.data:
+                return current, parent, True
+            
+            parent = current
+
+            if int(value) < current.data:
+                current = current.left
+            else:
+                current = current.right
+
+        return None, parent, False
+
     def remove_node_message(self, value):
         node_to_remove = self.search_node(value)
 

@@ -1,26 +1,34 @@
-from Node import Node
+
 from BinarySearchTree import BinarySearchTree
 
-t = BinarySearchTree("A")
 
-b = Node("B")
-c = Node("C")
-d = Node("D")
-e = Node("E")
-f = Node("F")
-g = Node("G")
-h = Node("H")
+root_value = int(input("Digite o valor da raiz da arvore: "))
 
-t.root.add_left_child(b)
-t.root.add_right_child(c)
+t = BinarySearchTree(root_value)
+t.set_root(root_value)
 
-b.add_left_child(d)
-b.add_right_child(e)
-c.add_left_child(f)
-c.add_right_child(g)
-e.add_right_child(h)
+print("Árvore inicial:")
+print(t)
 
-print("Árvore:")
+while True:
+    add_node = input("Você deseja adicionar um novo nodo? (s/n): ")
+    
+    if add_node.lower() == 's':
+        new_value = int(input("Digite o valor do novo nodo: "))
+        
+        if new_value < t.root.data:
+            success = t.add_left_child(t.root.data, new_value)
+        elif new_value > t.root.data:
+            success = t.add_right_child(t.root.data, new_value)
+        else:
+            print("O novo valor é igual ao valor da raiz. Não pode ser adicionado.")
+        
+        if not success:
+            print("Falha ao adicionar o novo nodo.")
+    else:
+        break    
+
+print("Árvore final:")
 print(t)
 
 print(f"Preorder: {t.print_tree('preorder')}")
@@ -30,7 +38,7 @@ print(f"Postorder: {t.print_tree('postorder')}")
 while True:
     node_name_to_find = input("Qual nodo você quer buscar? ")
 
-    node_to_find = t.search_node(node_name_to_find)
+    node_to_find, _, message = t.search_node(node_name_to_find)
 
     if node_to_find is not None:
         break
@@ -56,17 +64,19 @@ for element in t.iterator():
 print("Nodos na Árvore:")
 for position in t.positions():
     print(position)
+    
+"""
 
-old_data = input("Digite o nodo que você quer substituir: ")
+old_data = int(input("Digite o nodo que você quer substituir: "))
 
-node_to_replace = t.search_node(old_data, t.get_root())
+node_to_replace = t.search_node(old_data)
 
 if node_to_replace is not None:
-    parent_node = t.find_parent(t.get_root(), node_to_replace)
+    parent_node = t.find_parent(t.set_root(root_value), node_to_replace)
 
-    new_data = input("Digite o novo valor do nodo: ")
+    new_data = int(input("Digite o novo valor do nodo: "))
 
-    result = t.replace_element(old_data, new_data)
+    result = t.replace_element(node_to_replace, new_data)
     if result is not None:
         old_value, new_value = result
         print(f"Substituindo o antigo valor pelo novo.\n Antigo valor: {old_value}.\n Novo valor: {new_value}")
@@ -78,7 +88,7 @@ if node_to_replace is not None:
 else:
     print(f"Nodo '{old_data}' não encontrado. Tente novamente.")
     
-
+"""
 remove = input("Você quer remover algum nodo? ")
 
 if remove == "y":
@@ -89,4 +99,5 @@ if remove == "y":
 else:
     print("Árvore existente:")
     print(t)
+    
     
