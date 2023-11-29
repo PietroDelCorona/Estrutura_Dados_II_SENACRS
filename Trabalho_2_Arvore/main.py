@@ -41,6 +41,8 @@ def call_second_tree():
     second_tree.insert(2)
     second_tree.insert(1)
     
+    print(second_tree)
+    
     height = second_tree.height_tree()
     if height == 0:
         print("Árvore está vazia.")
@@ -55,6 +57,8 @@ def call_second_tree():
 def call_third_tree():
     print("Terceira Árvore:")
     third_tree = BinarySearchTree("")
+    
+    print(third_tree)
     
     height = third_tree.height_tree()
     if height == 0:
