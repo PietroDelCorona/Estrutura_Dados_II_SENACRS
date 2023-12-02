@@ -4,7 +4,7 @@ from Node import Node
 class BinarySearchTree:
     def __init__(self, root_data):
         self.root = Node(root_data)
-        
+       
        
     def is_empty(self):
         if self.root == None:
@@ -143,6 +143,41 @@ class BinarySearchTree:
             right_height = self.height_tree_helper(node.right)
             
             return max(left_height, right_height) +1
+        
+    def remove(self, key):
+        self.root = self.remove_node_rec(self.root, key)
+    
+    def remove_node_rec(self, node, key):
+        if node is None:
+            return node
+        
+        if key < node.key:
+            node.left = self.remove_node_rec(node.left, key)
+        elif key > node.key:
+            node.right = self.remove_node_rec(node.right, key)
+        else:
+            if node.left is None:
+                temp = node.right
+                node = None
+                return temp
+            elif node.right is None:
+                temp = node.left
+                node = None
+                return temp
+            
+            temp = self.min_value_node(node.right)
+            
+            node.key = temp.key
+            
+            node.right = self.remove_node_rec(node.right, temp.key)
+            
+        return node          
+            
+    def min_value_node(self, node):
+        current = node
+        while current.left is not None:
+            current = current.left
+        return current
     
     
     
