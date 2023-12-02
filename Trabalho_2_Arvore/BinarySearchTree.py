@@ -2,12 +2,16 @@
 from Node import Node
 
 class BinarySearchTree:
-    def __init__(self, root_data):
-        self.root = Node(root_data)
+    def __init__(self, root_data = None):
+        if root_data is not None and root_data != -1:
+            self.root = Node(root_data)
+        else:
+            self.root = None
+        
        
        
     def is_empty(self):
-        if self.root == None:
+        if self.root is None:
             return True
         return False
     
@@ -15,7 +19,7 @@ class BinarySearchTree:
         return self.size()
     
     def size(self):
-        return self.size_helper(self.root)
+        return self.size_helper(self.root) 
     
     def size_helper(self, node):
         if node is None:
@@ -53,27 +57,33 @@ class BinarySearchTree:
         else:
             return "Tipo de travessia não reconhecido."
 
-    def preorder_print(self, start, traversal=""):
-        if start:
+    def preorder_print(self, start=None, traversal=""):
+        if self.root is None:
+            return "Árvore está vazia"
+        elif start is not None:
             traversal += (str(start.key) + " ")
             traversal = self.preorder_print(start.left, traversal)
             traversal = self.preorder_print(start.right, traversal)
         return traversal
 
-    def inorder_print(self, start, traversal=""):
-        if start:
+    def inorder_print(self, start=None, traversal=""):
+        if self.root is None:
+            return "Árvore está vazia"
+        elif start is not None:
             traversal = self.inorder_print(start.left, traversal)
             traversal += (str(start.key) + " ")
             traversal = self.inorder_print(start.right, traversal)
         return traversal
 
-    def postorder_print(self, start, traversal=""):
-        if start:
+    def postorder_print(self, start=None, traversal=""):
+        if self.root is None:
+            return "Árvore está vazia"
+        elif start is not None:
             traversal = self.postorder_print(start.left, traversal)
             traversal = self.postorder_print(start.right, traversal)
             traversal += (str(start.key) + " ")
         return traversal
-    
+        
     def insert(self, key):
         if self.root is None:
             self.root = Node(key)
@@ -178,8 +188,3 @@ class BinarySearchTree:
         while current.left is not None:
             current = current.left
         return current
-    
-    
-    
-    
-    

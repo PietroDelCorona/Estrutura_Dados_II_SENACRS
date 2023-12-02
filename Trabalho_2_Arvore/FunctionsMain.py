@@ -29,17 +29,19 @@ class FunctionsMain:
         
         
         while True:
-            node_remove = input("Você deseja remover algum nó da árvore atual (s/n)? ")
-            if first_tree.is_empty():
-                print("A árvore está vazia.")
-                break
-            elif node_remove == 's':
-                removed_value = int(input("Digite aqui qual nó você quer remover: "))
-                first_tree.remove(removed_value)
-                print(f"Árvore depois da remoção do nó {removed_value}:\n")
-                print(first_tree)
-            else:
-                break        
+                node_remove = input("Você deseja remover algum nó da árvore atual (s/n)? ")
+                        
+                if node_remove == 's':
+                    if first_tree.root is None:
+                        print("A árvore está vazia.")
+                        break 
+                    else:
+                        removed_value = int(input("Digite aqui qual nó você quer remover: "))
+                        first_tree.remove(removed_value)
+                        print(f"Árvore depois da remoção do nó {removed_value}:\n")
+                        print(first_tree)
+                else:
+                    break       
                    
         
     def call_second_tree():
@@ -68,14 +70,16 @@ class FunctionsMain:
         
         while True:
             node_remove = input("Você deseja remover algum nó da árvore atual (s/n)? ")
-            if second_tree.is_empty():
-                print("A árvore está vazia.")
-                break
-            elif node_remove == 's':
-                removed_value = int(input("Digite aqui qual nó você quer remover: "))
-                second_tree.remove(removed_value)
-                print(f"Árvore depois da remoção do nó {removed_value}:\n")
-                print(second_tree)
+                      
+            if node_remove == 's':
+                if second_tree.root is None:
+                    print("A árvore está vazia.")
+                    break 
+                else:
+                    removed_value = int(input("Digite aqui qual nó você quer remover: "))
+                    second_tree.remove(removed_value)
+                    print(f"Árvore depois da remoção do nó {removed_value}:\n")
+                    print(second_tree)
             else:
                 break   
             
@@ -95,5 +99,20 @@ class FunctionsMain:
         print(f"Preorder: {third_tree.print_tree('preorder')}")
         print(f"Inorder: {third_tree.print_tree('inorder')}")
         print(f"Postorder: {third_tree.print_tree('postorder')}")
+        
+        while True:
+            node_remove = input("Você deseja remover algum nó da árvore atual (s/n)? ")
+                      
+            if node_remove == 's':
+                if third_tree.root is None:
+                    print("A árvore está vazia.")
+                    break 
+                else:
+                    removed_value = int(input("Digite aqui qual nó você quer remover: "))
+                    third_tree.remove(removed_value)
+                    print(f"Árvore depois da remoção do nó {removed_value}:\n")
+                    print(third_tree)
+            else:
+                break
     
           
