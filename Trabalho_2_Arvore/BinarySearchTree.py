@@ -7,8 +7,6 @@ class BinarySearchTree:
             self.root = Node(root_data)
         else:
             self.root = None
-        
-       
        
     def is_empty(self):
         if self.root is None:
