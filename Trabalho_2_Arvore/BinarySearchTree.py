@@ -120,23 +120,6 @@ class BinarySearchTree:
         else:
             return self.get_father_helper(node.right, key)
     
-    def get_father_rec(self, key):
-        if self.root is None or self.root.key == key:
-            return None
-        return self.get_father_rec_helper(self.root, None, key)
-            
-    def get_father_rec_helper(self, node, parent, key):
-        if node is None:
-            return None
-        
-        if node.key == key:
-            return parent
-        
-        if key < node.key:
-            return self.get_father_rec_helper(node.left, node, key)
-        else:
-            return self.get_father_rec_helper(node.right, node, key)
-    
     def height_tree(self):
         if self.root is None:
             return 0
