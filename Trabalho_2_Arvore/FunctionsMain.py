@@ -5,6 +5,7 @@ class FunctionsMain:
     
     def call_first_tree():
         print("Primeira Árvore:")
+        
         first_tree = BinarySearchTree(1)
         first_tree.insert(2)
         first_tree.insert(3)
@@ -15,6 +16,18 @@ class FunctionsMain:
         first_tree.insert(8)
         first_tree.insert(9)
         
+        #Demonstração AVL Tree - Professora
+        '''
+        first_tree = BinarySearchTree(4)
+        first_tree.insert(2)
+        first_tree.insert(6)
+        first_tree.insert(1)
+        first_tree.insert(3)
+        first_tree.insert(5)
+        first_tree.insert(8)
+        first_tree.insert(7)
+        first_tree.insert(9)
+        '''
         print(first_tree) 
         
         height = first_tree.height_tree()
