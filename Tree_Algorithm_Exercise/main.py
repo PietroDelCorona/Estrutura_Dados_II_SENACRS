@@ -71,3 +71,5 @@ t.replace_element(old_data, new_data)
 print(f"Substituindo o antigo valor pelo novo.\n Antigo valor: {old_data}.\n Novo valor: {new_data}")
 print("Árvore após a substituição:")
 print(t)
+
+print("Testando conexão git")
